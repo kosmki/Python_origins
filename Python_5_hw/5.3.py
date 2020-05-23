@@ -8,10 +8,13 @@
 Петров 13749.32
 """
 
-
-# my_file = open("data.txt", encoding="utf-8")
-
-file = open("data.txt", "r", encoding="utf-8")
-data = [map(float, line.split("\t")) for line in file]
-
-print(data)
+with open('data.txt', encoding='utf-8') as f:
+    salaries = []
+    lines = f.readlines()
+    for line in lines:
+        name, salary = line.split()
+        salaries.append(float(salary))
+        if float(salary) < 20000:
+            print(line, end='')
+    print('\nСредняя з/п:', sum(salaries) / len(salaries))
+    print(salaries)
